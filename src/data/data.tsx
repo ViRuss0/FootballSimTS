@@ -32,6 +32,7 @@ class Team {
 	scored: number;
 	conceded: number;
 	played: number;
+	goalDifference: number;
 
 	constructor(name: string, atk: number, build: number, def: number) {
 		this.name = name;
@@ -43,6 +44,7 @@ class Team {
 		this.scored = 0;
 		this.conceded = 0;
 		this.played = 0;
+		this.goalDifference = 0;
 	}
 
 	capitalize = function (this: Team): string {
@@ -53,10 +55,6 @@ class Team {
 				.splice(1, this.name.length - 1)
 				.join('')
 		);
-	};
-
-	goalDifference = function (this: Team): number {
-		return this.scored - this.conceded;
 	};
 }
 

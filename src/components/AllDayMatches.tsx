@@ -15,7 +15,7 @@ type AllDayMatchesProps = {
 	goalsScored: number[][];
 };
 
-export default function AllDayMatches({
+const AllDayMatches = ({
 	dayMatches,
 	curDay,
 	teams,
@@ -25,7 +25,7 @@ export default function AllDayMatches({
 	nextToBeSim,
 	onPrevDay,
 	onNextDay,
-}: AllDayMatchesProps): JSX.Element {
+}: AllDayMatchesProps): JSX.Element => {
 	// DETERMINES HOW MANY GOAL CHANCES EACH TEAM CREATES
 	const getChances = function (attacker: Team, defender: Team): number[] {
 		return new Array(
@@ -50,7 +50,7 @@ export default function AllDayMatches({
 		return goals > 6 ? 6 : goals;
 	};
 	// DETERMINES THE WINNER OF EACH MATCH AND LIFTS UP THE STATE TO APP COMP.
-	const simulateAllMatchesHandler = function () {
+	const simulateAllMatchesHandler = () => {
 		const results = dayMatches.map((match) => {
 			const teamHome = match[0];
 			const teamAway = match[1];
@@ -176,4 +176,6 @@ export default function AllDayMatches({
 			</div>
 		</div>
 	);
-}
+};
+
+export default AllDayMatches;

@@ -12,7 +12,7 @@ type UpdateStats = {
 	pts: number;
 };
 
-function App() {
+const App = () => {
 	// STATE THAT HOLDS ALL THE MATCHES FOR THE CURRENT CALENDAR (PASSED TO ALLDAYMATCHES COMP.)
 	const [allMatches, setAllMatches] = useState<Team[][][]>([]);
 	// DETERMINES WHICH DAY OF THE CHAMPIONSHIP FIXTURES SHOULD BE VISIBLE IN THE UI
@@ -98,11 +98,14 @@ function App() {
 		pts,
 	}: UpdateStats): void {
 		let curTeam = teamsTab[name];
+		let scored = curTeam.scored + score;
+		let conceded = curTeam.conceded + concede;
 		teamsTab[name] = {
 			...curTeam,
-			scored: curTeam.scored + score,
-			conceded: curTeam.conceded + concede,
+			scored,
+			conceded,
 			points: curTeam.points + pts,
+			goalDifference: scored - conceded,
 		};
 		//UPDATES STATE (PASSED TO TABLE COMPONENT)
 		setTeamsTab({
@@ -149,7 +152,7 @@ function App() {
 			)}
 		</div>
 	);
-}
+};
 
 export default App;
 export type { UpdateStats };
